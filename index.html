@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEEJAYDATA – Buy Data Bundles Online</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+  --bg: #060D1A;
+  --bg2: #0C1830;
+  --card: #0f2040;
+  --card-border: rgba(0, 194, 255, 0.12);
+  --accent: #00C2FF;
+  --accent2: #0077ff;
+  --text: #EEF4FF;
+  --muted: rgba(238,244,255,0.5);
+  --glow: 0 0 30px rgba(0,194,255,0.15);
+}
+
+.light-mode {
+  --bg: #f0f5ff;
+  --bg2: #e2ecff;
+  --card: #ffffff;
+  --card-border: rgba(0,119,255,0.15);
+  --accent: #0077ff;
+  --accent2: #005ce6;
+  --text: #0a1628;
+  --muted: rgba(10,22,40,0.5);
+  --glow: 0 4px 24px rgba(0,119,255,0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background 0.4s, color 0.4s;
+  overflow-x: hidden;
+}
+
+/* ── BACKGROUND TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(0,194,255,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(0,119,255,0.07) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── HEADER ── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  background: rgba(6,13,26,0.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--card-border);
+  transition: background 0.4s;
+}
+
+.light-mode header {
+  background: rgba(240,245,255,0.85);
+}
+
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, var(--accent), #6ec6ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.badge {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  background: rgba(0,194,255,0.1);
+  border: 1px solid rgba(0,194,255,0.2);
+  padding: 5px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.3px;
+}
+
+.theme-toggle {
+  cursor: pointer;
+  font-size: 18px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  padding: 8px 13px;
+  border-radius: 10px;
+  transition: 0.3s;
+  line-height: 1;
+}
+
+.theme-toggle:hover { transform: scale(1.1); }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 90px 20px 70px;
+}
+
+.hero-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(0,194,255,0.08);
+  border: 1px solid rgba(0,194,255,0.2);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+  animation: fadeUp 0.6s ease both;
+}
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(36px, 6vw, 62px);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 18px;
+  animation: fadeUp 0.7s 0.1s ease both;
+}
+
+.hero h1 span {
+  background: linear-gradient(100deg, var(--accent), #6ec6ff 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 420px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+  animation: fadeUp 0.7s 0.2s ease both;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+  letter-spacing: 0.5px;
+}
+
+/* ── DIVIDER ── */
+.section-label {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 10px 0 30px;
+}
+
+.section-label span {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── NETWORK CARDS ── */
+.networks {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 10px 40px 80px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  padding: 32px 28px;
+  border-radius: 20px;
+  width: 230px;
+  text-align: center;
+  transition: transform 0.35s cubic-bezier(.22,.68,0,1.2), box-shadow 0.35s, border-color 0.35s;
+  animation: fadeUp 0.7s ease both;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,194,255,0.05) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s;
+  border-radius: 20px;
+}
+
+.card:hover::before { opacity: 1; }
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: var(--glow), 0 20px 40px rgba(0,0,0,0.3);
+  border-color: rgba(0,194,255,0.35);
+}
+
+.card-logo {
+  width: 76px;
+  height: 76px;
+  border-radius: 18px;
+  object-fit: contain;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25));
+  transition: transform 0.3s;
+}
+
+.card:hover .card-logo { transform: scale(1.08); }
+
+.card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.card-desc {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 22px;
+  line-height: 1.5;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 22px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  transition: opacity 0.2s, transform 0.2s;
+  letter-spacing: 0.2px;
+}
+
+.btn:hover { opacity: 0.88; transform: scale(1.04); }
+
+.btn svg {
+  width: 14px; height: 14px;
+  transition: transform 0.2s;
+}
+
+.btn:hover svg { transform: translateX(3px); }
+
+/* ── FEATURES STRIP ── */
+.features {
+  position: relative;
+  z-index: 1;
+  background: var(--bg2);
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+  padding: 36px 40px;
+  margin-bottom: 0;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 32px;
+  border-right: 1px solid var(--card-border);
+}
+
+.feature:last-child { border-right: none; }
+
+.feature-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.feature-text strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.feature-text span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ── FOOTER ── */
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 28px 20px;
+  font-size: 13px;
+  color: var(--muted);
+  border-top: 1px solid var(--card-border);
+}
+
+footer strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  header { padding: 16px 20px; }
+  .hero { padding: 60px 16px 50px; }
+  .networks { padding: 10px 20px 60px; gap: 16px; }
+  .card { width: 100%; max-width: 340px; }
+  .features { flex-direction: column; align-items: center; gap: 16px; }
+  .feature { border-right: none; border-bottom: 1px solid var(--card-border); padding: 12px 0; width: 100%; max-width: 280px; }
+  .feature:last-child { border-bottom: none; }
+  .hero-stats { gap: 24px; }
+  .badge { display: none; }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <div class="logo">CEEJAYDATA</div>
+  <div class="header-right">
+    <span class="badge">🟢 Live</span>
+    <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-label">⚡ Ghana's Fastest Data Bundles</div>
+  <h1>Buy Data <span>Instantly</span></h1>
+  <p>Fast. Secure. Affordable data bundles for all networks. Top up in seconds.</p>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Networks</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">Available</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Fast</div>
+      <div class="stat-label">Delivery</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-label"><span>— Choose Your Network —</span></div>
+
+<div class="networks">
+
+  <div class="card" onclick="goTo('mtn.html')">
+    <img class="card-logo" src="images/mtn.png" alt="MTN">
+    <h3>MTN</h3>
+    <p class="card-desc">Best rates on MTN data bundles</p>
+    <button class="btn">
+      View Plans
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M13 6l6 6-6 6"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="card" onclick="goTo('airteltigo.html')">
+    <img class="card-logo" src="images/airteltigo.png" alt="AirtelTigo">
+    <h3>AirtelTigo</h3>
+    <p class="card-desc">Affordable AirtelTigo data deals</p>
+    <button class="btn">
+      View Plans
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M13 6l6 6-6 6"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="card" onclick="goTo('telecel.html')">
+    <img class="card-logo" src="images/telecel.png" alt="Telecel">
+    <h3>Telecel</h3>
+    <p class="card-desc">Great value Telecel data packages</p>
+    <button class="btn">
+      View Plans
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M13 6l6 6-6 6"/>
+      </svg>
+    </button>
+  </div>
+
+</div>
+
+<div class="features">
+  <div class="feature">
+    <span class="feature-icon">⚡</span>
+    <div class="feature-text">
+      <strong>Instant Delivery</strong>
+      <span>Data in seconds</span>
+    </div>
+  </div>
+  <div class="feature">
+    <span class="feature-icon">🔒</span>
+    <div class="feature-text">
+      <strong>Secure Payments</strong>
+      <span>Safe & encrypted</span>
+    </div>
+  </div>
+  <div class="feature">
+    <span class="feature-icon">💰</span>
+    <div class="feature-text">
+      <strong>Best Prices</strong>
+      <span>Unbeatable rates</span>
+    </div>
+  </div>
+  <div class="feature">
+    <span class="feature-icon">📞</span>
+    <div class="feature-text">
+      <strong>24/7 Support</strong>
+      <span>Always here for you</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2026 <strong>CEEJAYDATA</strong>. All rights reserved.
+</footer>
+
+<script>
+
+function goTo(page) {
+  window.location.href = page;
+}
+
+function toggleTheme() {
+  let body = document.body;
+  let toggle = document.querySelector(".theme-toggle");
+  body.classList.toggle("light-mode");
+  if (body.classList.contains("light-mode")) {
+    toggle.textContent = "☀️";
+    localStorage.setItem("theme", "light");
+  } else {
+    toggle.textContent = "🌙";
+    localStorage.setItem("theme", "dark");
+  }
+}
+
+window.onload = function () {
+  let saved = localStorage.getItem("theme");
+  let toggle = document.querySelector(".theme-toggle");
+  if (saved === "light") {
+    document.body.classList.add("light-mode");
+    toggle.textContent = "☀️";
+  }
+};
+
+</script>
+
+</body>
+</html>
