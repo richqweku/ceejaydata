@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 // ── CONFIGURATION ──────────────────────────────────────────
-const PAYSTACK_SECRET     = 'sk_test_45dde4a4f48905859d44b8727b470fa186009600';
+const PAYSTACK_SECRET     = 'sk_live_3c11134dc9c016a813de08e847c3ea68639e6618';
 const TELEGRAM_BOT_TOKEN  = '8595202827:AAEAkJMc07FLMW2FOMVKFKGYmVUDmaATIwE';
 const TELEGRAM_CHAT_ID    = '5606750551';
 const PORT                = process.env.PORT || 3000;
